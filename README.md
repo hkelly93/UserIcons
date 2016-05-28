@@ -4,6 +4,8 @@ aims to generate icons that are similar to Google's.
 
 There is a lot more work to be done before the first release.
 
+Featured on [CSS Script](http://www.cssscript.com/minimal-user-text-avatar-generator-user-icons/).
+
 ## Usage
 Using this project is simple. All that is needed is the following
 
