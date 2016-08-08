@@ -22,16 +22,15 @@
  * THE SOFTWARE.
  */
 
-var UserIcon = (function() {
-    'use strict';
-
+export default class UserIcon {
     /**
      * Returns an object to generate a usericon.
      *
      * @param name {string} The name to place in the icon.
+     * @param id {string} The ID of the DOM element to place the icon in.
      * @constructor
      */
-    var UserIcon = function(name) {
+    constructor(name, id) {
         // The color set for the icons.
         this.colorSet = ['#69d2e7', '#a7db8db', '#e0e4cc', '#f38630', '#fa6900', '#f34365', '#fc9d9a', '#f9cdad', '#c8c8a9',
             '#83af9b', '#ecd078', '#d95ba3', '#c02942', '#542437', '#53777a', '#43cdc4', '#c7f464', '#ff6b6b', '#c44d58',
@@ -45,18 +44,26 @@ var UserIcon = (function() {
 
         this.svgNameSpace = 'http://www.w3.org/2000/svg';
 
+        if (id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.innerHTML = this.generate();
+                return;
+            }
+        }
+
         return this.generate();
-    };
+    }
 
     /**
      * Splits the name based on the delimeter.
      *
-     * @param _this {UserIcon} Object for the private method.
      * @param delimeter {String} The delimeter to split the name with.
      * @returns {String} The name split into initials.
+     * @private
      */
-    var nameSplit = function(_this, delimeter) {
-        var name = _this.name;
+    nameSplit(delimeter) {
+        const name = this.name;
 
         if (name.split(delimeter).length > 2)
         {
@@ -66,48 +73,51 @@ var UserIcon = (function() {
         var parts = name.split(delimeter);
 
         return parts[0].charAt(0) + parts[1].charAt(0);
-    };
+    }
 
     /**
      * Returns the initials from the name.
      *
-     * @param _this {UserIcon} Object for the private method.
+     * @private
      */
-    var getInitials = function(_this) {
-        var name = _this.name;
+    getInitials() {
+        const name = this.name;
 
         if (name.length > 0) {
             if (name.indexOf('-') > 0) {
-                return nameSplit(_this, '-');
+                return this.nameSplit('-');
             } else if (name.indexOf('.') > 0) {
-                return nameSplit(_this, '.');
+                return this.nameSplit('.');
             } else if (name.indexOf('_') > 0) {
-                return nameSplit(_this, '_');
+                return this.nameSplit('_');
             } else {
                 return name.charAt(0);
             }
         }
-    };
+    }
 
     /**
      * Returns selected color based on the name.
+     *
+     * @private
      */
-    UserIcon.prototype.getColor = function() {
+    getColor() {
         if (this.name.length > 0) {
-            var colorIndex = (this.name.length + this.alphabet.indexOf(this.name.charAt(0))) % 26;
+            const colorIndex = (this.name.length + this.alphabet.indexOf(this.name.charAt(0))) % 26;
 
             return this.colorSet[colorIndex];
         }
-    };
+    }
 
     /**
      * Generates a user icon.
      *
      * @returns {Element} An SVG element containing the icon.
+     * @private
      */
-    UserIcon.prototype.generate = function() {
-        var color = this.getColor(),
-            initials = getInitials(this).toLowerCase(),
+    generate() {
+        const color = this.getColor(),
+            initials = this.getInitials().toLowerCase(),
             svg = document.createElementNS(this.svgNameSpace, 'svg'),
             circle = document.createElementNS(this.svgNameSpace, 'circle'),
             text = document.createElementNS(this.svgNameSpace, 'text');
@@ -130,7 +140,5 @@ var UserIcon = (function() {
         svg.appendChild(text);
 
         return svg;
-    };
-
-    return UserIcon;
-})();
+    }
+}
