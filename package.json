@@ -1,0 +1,28 @@
+{
+  "name": "usericons",
+  "version": "1.0.0",
+  "description": "Google-like user icons.",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hkelly93/UserIcons.git"
+  },
+  "keywords": [
+    "UserIcons",
+    "Google",
+    "icons",
+    "user"
+  ],
+  "author": "Harrison kelly",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hkelly93/UserIcons/issues"
+  },
+  "homepage": "https://github.com/hkelly93/UserIcons#readme"
+}
