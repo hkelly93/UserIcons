@@ -152,7 +152,7 @@ var UserIcon = function () {
             circle.setAttribute('fill', color);
 
             text.setAttribute('x', '50%');
-            text.setAttribute('y', '50%');
+            text.setAttribute('y', '60%');
             text.setAttribute('text-anchor', 'middle');
             text.setAttribute('style', 'font-weight: bold; font-family: Helvetica, sans-serif;');
             text.setAttribute('fill', '#ffffff');
