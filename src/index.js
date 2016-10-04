@@ -47,7 +47,7 @@ export default class UserIcon {
         if (id) {
             const el = document.getElementById(id);
             if (el) {
-                el.innerHTML = this.generate();
+                el.appendChild(this.generate());
                 return;
             }
         }
@@ -56,21 +56,21 @@ export default class UserIcon {
     }
 
     /**
-     * Splits the name based on the delimeter.
+     * Splits the name based on the delimiter.
      *
-     * @param delimeter {String} The delimeter to split the name with.
+     * @param delimiter {String} The delimiter to split the name with.
      * @returns {String} The name split into initials.
      * @private
      */
-    nameSplit(delimeter) {
+    nameSplit(delimiter) {
         const name = this.name;
 
-        if (name.split(delimeter).length > 2)
+        if (name.split(delimiter).length > 2)
         {
-            throw 'Name contains too many delimeters.';
+            return name.charAt(0);  // Too many delimiters, return the first character.
         }
 
-        var parts = name.split(delimeter);
+        var parts = name.split(delimiter);
 
         return parts[0].charAt(0) + parts[1].charAt(0);
     }
@@ -130,8 +130,9 @@ export default class UserIcon {
         circle.setAttribute('r', '23');
         circle.setAttribute('fill', color);
 
-        text.setAttribute('x', (initials.length == 2) ? '15' : '20');
-        text.setAttribute('y', '28');
+        text.setAttribute('x', '50%');
+        text.setAttribute('y', '50%');
+        text.setAttribute('text-anchor', 'middle');
         text.setAttribute('style', 'font-weight: bold; font-family: Helvetica, sans-serif;');
         text.setAttribute('fill', '#ffffff');
         text.innerHTML = initials;
