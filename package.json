@@ -1,6 +1,6 @@
 {
   "name": "usericons",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Google-like user icons.",
   "main": "index.js",
   "directories": {
